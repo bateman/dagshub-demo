@@ -26,7 +26,7 @@ predictions = predictions_by_class[:,1]
 precision, recall, thresholds = precision_recall_curve(labels, predictions)
 
 auc = metrics.auc(recall, precision)
-mlflow.log_metric("auc", auc)
+mlflow.log_metric("AUC", auc)
 #print('AUC={}'.format(metrics.auc(recall, precision)))
 with open(metrics_file, 'w') as fd:
     fd.write('AUC: {:4f}\n'.format(auc))
