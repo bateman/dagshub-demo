@@ -27,79 +27,63 @@ stages:
     cmd: python code/split_train_test.py 0.3 1234
     deps:
     - path: code/split_train_test.py
-      hash: md5
       md5: bd1d6c2f35e7d1e49d3c231692f87aa2
       size: 1860
     - path: data/Posts.tsv
-      hash: md5
       md5: f64d65d4ccef9ff9d37ea4cf70b18700
       size: 25654203
     outs:
     - path: data/Posts-test.tsv
-      hash: md5
       md5: 670ecac923aebe2d3cfe33a7b8a84bbf
       size: 7639362
     - path: data/Posts-train.tsv
-      hash: md5
       md5: 2dc5d17a0bbdb8050199dfb945c40029
       size: 18246521
   featurize:
     cmd: python code/featurization.py
     deps:
     - path: code/featurization.py
-      hash: md5
       md5: aa48e249c9b179d14aa5b6e30f26f835
       size: 2130
     - path: data/Posts-test.tsv
-      hash: md5
       md5: 670ecac923aebe2d3cfe33a7b8a84bbf
       size: 7639362
     - path: data/Posts-train.tsv
-      hash: md5
       md5: 2dc5d17a0bbdb8050199dfb945c40029
       size: 18246521
     outs:
     - path: data/matrix-test.pkl
-      hash: md5
       md5: a941efd74a5492ce2d788e12ef9e96b0
       size: 3423414
     - path: data/matrix-train.pkl
-      hash: md5
       md5: 0ddc5b120fea2ae2c24d7ba1d5337e34
       size: 8086151
   train:
     cmd: python code/train_model.py 1234
     deps:
     - path: code/train_model.py
-      hash: md5
       md5: 17b37113a7a12afcd9c64db6f482c555
       size: 912
     - path: data/matrix-train.pkl
-      hash: md5
       md5: 0ddc5b120fea2ae2c24d7ba1d5337e34
       size: 8086151
     outs:
     - path: data/model.pkl
-      hash: md5
       md5: 68e528b96cf148ca3efe65c8390730e6
       size: 5359561
   evaluate:
     cmd: python code/evaluate.py
     deps:
     - path: code/evaluate.py
-      hash: md5
       md5: 6b3b0a4f0c1b81f962a23e07a7f89324
       size: 883
     - path: data/matrix-test.pkl
-      hash: md5
       md5: a941efd74a5492ce2d788e12ef9e96b0
       size: 3423414
     - path: data/model.pkl
-      hash: md5
       md5: 68e528b96cf148ca3efe65c8390730e6
       size: 5359561
     outs:
     - path: metrics/auc.metric
-      hash: md5
       md5: 395968212641109ebfbbf7e8e9f0643b
       size: 14
